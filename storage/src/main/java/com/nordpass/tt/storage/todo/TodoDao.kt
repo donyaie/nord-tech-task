@@ -13,7 +13,7 @@ internal interface TodoDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun updateOrCreate(list: List<TodoEntity>): Completable
 
-    @Query("SELECT * FROM $TABLE_NAME")
+    @Query("SELECT * FROM $TABLE_NAME ORDER BY isCompleted ASC ,updatedAt DESC")
     fun getAll(): Single<List<TodoEntity>>
 
     @Query("SELECT * FROM $TABLE_NAME")
