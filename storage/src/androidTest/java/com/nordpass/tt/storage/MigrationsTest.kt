@@ -23,6 +23,12 @@ class MigrationsTest {
         helper.runMigrationsAndValidate(DATABASE_NAME, 2, false, Migrations.migration_1_2)
     }
 
+    @Test
+    fun validateMigration_2_3() {
+        helper.createDatabase(DATABASE_NAME, 2)
+        helper.runMigrationsAndValidate(DATABASE_NAME, 3, false, Migrations.migration_2_3)
+    }
+
     companion object {
         private const val DATABASE_NAME = "test_db"
     }
