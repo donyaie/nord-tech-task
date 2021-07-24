@@ -13,7 +13,9 @@ internal class TodoResponseMapper @Inject constructor() {
             id = id,
             title = title,
             isCompleted = completed,
-            createdAt = response.createdAt ?: ""
+            createdAt = response.createdAt ?: "",
+            userId = response.userId ?: 0,
+            updatedAt = response.updatedAt ?: "",
         )
     }
 }

@@ -5,6 +5,6 @@ internal class TodoResponse {
     var title: String? = null
     var completed: Boolean? = null
     var createdAt: String? = null // example 2021-01-13T03:50:03.794+05:30
-//    var userId: Int? = null
-//    var updatedAt: String? = null
+    var userId: Int? = null
+    var updatedAt: String? = null
 }
