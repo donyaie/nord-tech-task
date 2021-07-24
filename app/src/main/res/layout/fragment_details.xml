@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -11,47 +12,69 @@
             type="com.nordpass.task.ui.details.TodoDetailsViewModel" />
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical">
 
+
         <TextView
+            android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
             android:gravity="center"
             android:text="@{viewModel.item.title}"
             android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@id/todo"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="Todo item title" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="64dp"
+            android:layout_marginTop="8dp"
             android:text="@{viewModel.item.completed ? @string/completedLabel : @string/unfinishedLabel}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title"
             tools:text="@string/completedLabel" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:layout_width="wrap_content"
+            android:id="@+id/edit"
+            style="@style/Theme.ButtonStyle"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:onClick="@{view -> viewModel.onEditClicked()}"
-            android:text="@string/editButtonText" />
+            android:text="@string/editButtonText"
+            app:layout_constraintBottom_toTopOf="@id/finished"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:layout_width="wrap_content"
+            android:id="@+id/todo"
+            style="@style/Theme.ButtonStyle"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:onClick="@{view -> viewModel.onTodoClicked()}"
             android:text="@string/todoButtonText"
-            android:visibility="@{viewModel.item.completed ? View.VISIBLE  : View.GONE}" />
+            android:visibility="@{viewModel.item.completed ? View.VISIBLE  : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@id/edit"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:layout_width="wrap_content"
+            android:id="@+id/finished"
+            style="@style/Theme.ButtonStyle"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="36dp"
             android:onClick="@{view -> viewModel.onFinishedClicked()}"
             android:text="@string/finishedButtonText"
-            android:visibility="@{viewModel.item.completed ? View.GONE  : View.VISIBLE}" />
+            android:visibility="@{viewModel.item.completed ? View.GONE  : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
